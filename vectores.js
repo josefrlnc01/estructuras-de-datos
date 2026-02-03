@@ -72,4 +72,114 @@ const ventasDiarias = [
     [200, 210, 190, 180, 170, 280, 290]
 ];
 
-console.log(ventasPorDiasDeLaSemana(ventasDiarias))
+
+
+
+function colegio (calificaciones) {
+    const materias = ['Matemáticas', 'Ciencia', 'Historia', 'Inglés'];
+    const estudiantes = ['Ana', 'Carlos', 'María', 'Pedro', 'Luis', 'Saul'];
+    const estudiantesRiesgoArr = []
+
+    let materiaConPromedioMasAlto = 0
+    let nombreMateriaConPromedioMasAlto = 0
+    for (let i = 0; i < calificaciones.length; i++) {
+        let totalMateria = 0
+        let promedioMateria = 0
+        for (let j = 0; j < calificaciones[i].length; j++) {
+            //Obtención total de notas por materia
+            totalMateria += calificaciones[j][i]
+            //Promedio de la materia
+               promedioMateria = totalMateria / calificaciones[j].length
+        }
+        if (materiaConPromedioMasAlto < promedioMateria) {
+            materiaConPromedioMasAlto = promedioMateria
+            nombreMateriaConPromedioMasAlto = i
+        }
+    }
+
+    let estudianteConPromedioMasBajo = Infinity
+    let nombreEstudiantePromedioMasBajo = 0
+
+    for (let i = 0; i < calificaciones.length; i++) {
+        let totalNotasEstudiante = 0
+        let promedioEstudiante = 0
+        for (let j = 0; j < calificaciones[i].length; j++) {
+            //Obtención total notas por estudiante
+            totalNotasEstudiante += calificaciones[i][j]
+        }
+        //Promedio de cada estudiante
+        promedioEstudiante = totalNotasEstudiante / calificaciones[i].length
+      
+        if (promedioEstudiante <= 70) {
+            estudiantesRiesgoArr.push({
+                nombre : estudiantes[i],
+                promedio : promedioEstudiante
+            })
+          
+        }
+        if (estudianteConPromedioMasBajo > promedioEstudiante) {
+            estudianteConPromedioMasBajo = promedioEstudiante
+            nombreEstudiantePromedioMasBajo = i
+        } 
+    }
+    
+   const estudiantesEnRiesgo = estudiantesRiesgo(estudiantesRiesgoArr)
+    console.log(estudiantesEnRiesgo)
+    return {
+        nombreMateriaConPromedioMasAlto : materias[nombreMateriaConPromedioMasAlto],
+        nombreEstudiantePromedioMasBajo : estudiantes[nombreEstudiantePromedioMasBajo]
+     
+    }
+}
+
+// Calificaciones de 5 estudiantes en 4 materias
+const calificaciones = [
+  [85, 90, 78, 92],  // Estudiante 1: Math, Ciencia, Historia, Inglés
+  [70, 65, 80, 75],  // Estudiante 2
+  [95, 98, 100, 96], // Estudiante 3
+  [60, 55, 62, 58],  // Estudiante 4
+  [88, 85, 90, 87],   // Estudiante 5
+    [21, 32, 90, 82]   // Estudiante 5
+];
+
+console.log(colegio(calificaciones))
+
+function estudiantesRiesgo (est) {
+    let estudiantesRiesgo = {}
+    for (let i = 0; i < est.length; i++) {
+        estudiantesRiesgo[est[i].nombre] = {
+            nombre : est[i].nombre,
+            promedio : est[i].promedio
+        }
+    }
+
+    return estudiantesRiesgo
+}
+
+/*Encuentra qué materia tiene el promedio más alto
+Encuentra qué estudiante tiene el promedio más bajo
+Crea una función que devuelva un objeto con los estudiantes que están "en riesgo"*/ 
+
+
+function borrado (coches) {
+    
+    for (let i = 0; i < coches.length; i++) {
+        coches[i] = coches[i + 1]
+    }
+    coches.pop()
+  
+    return coches
+}
+
+
+const coches = [
+    'seat',
+    'audi',
+    'ford',
+    'opel',
+    'bmw'
+]
+
+
+console.log(borrado(coches))
+
