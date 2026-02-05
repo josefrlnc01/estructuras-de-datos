@@ -142,7 +142,7 @@ const calificaciones = [
     [21, 32, 90, 82]   // Estudiante 5
 ];
 
-console.log(colegio(calificaciones))
+
 
 function estudiantesRiesgo (est) {
     let estudiantesRiesgo = {}
@@ -181,5 +181,179 @@ const coches = [
 ]
 
 
-console.log(borrado(coches))
+function crearArray () {
+    const arr = []
+    for (let i = 1; i <= 100; i++) {
+        arr.push(i)
+    }
+    return arr
+}
 
+
+
+function tablaCuadrados (arr) {
+    let c = 1
+    const nuevaTabla = []
+    for (let i = 1; i < arr.length; i++) {
+        c = i * i
+        nuevaTabla.push(`${i} * ${i} = ${c} `)
+    }
+    return nuevaTabla
+}
+
+
+const arr = crearArray()
+
+const arrCUadrados = tablaCuadrados(arr)
+
+function valoresTemperaturas (temperaturas) {
+    let suma = 0
+    let cMayores = 0
+    let cMenores = 0
+
+    for (let i = 0; i < temperaturas.length; i++) {
+        suma += temperaturas[i]
+    }
+
+    const media = suma / temperaturas.length
+
+    for (let i = 0; i < temperaturas.length; i++) {
+        if (temperaturas[i] >= media) {
+           cMayores++
+        } else {
+            cMenores++
+        }
+    }
+
+   return {
+    mayoresOIgualesMedia :cMayores,
+    menoresMedia : cMenores
+   }
+}
+
+
+const temperaturas = [12, 18, 21, 15, 19, 24, 17, 20, 22, 16]
+
+
+
+const T = [
+  [  5, -3,  8, -1 ],
+  [ -7,  4,  0,  6 ],
+  [  2, -9, -4, 10 ]
+]
+
+
+
+function sumaPositivosNegativos (arr) {
+    let sP = 0
+    let sN = 0
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] > 0) {
+                sP += arr[i][j]
+            } else if (arr[i][j] < 0) {
+                sN += arr[i][j]
+            }
+        }
+    }
+
+
+    return {
+        sumaPositivos : sP,
+        sumaNegativos : sN
+    }
+}
+
+
+function cambiarValor (arr, k) {
+    const copia = []
+    for (let i = 0; i < arr.length; i++) {
+        copia[i] = []
+        for (let j = 0; j < arr[i].length; j++) {
+            copia[i][j] = k
+        }
+    }
+
+    return copia
+}
+
+
+const nuevoArr = cambiarValor(T, 6)
+
+
+const A = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+
+
+
+ 
+function sumaMatricesBidimensionales (a, b ) {
+    for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < a[i].length; j++) {
+            a[i][j] += b[i][j]
+        }
+    }
+}
+
+
+
+const T2 = [
+  [5, 10, 15],
+  [20, 25, 30],
+  [35, 40, 45]
+]
+// Suma total: 225
+
+
+function sumaElementos (arr) {
+    let suma = 0
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            suma += arr[i][j]
+        }
+    }
+    return suma
+}
+
+
+const nombres = [
+  'Alejandro', 'Beatriz', 'Carmen', 'Daniel', 'Elena',
+  'Fernando', 'Gabriela', 'Héctor', 'Isabel', 'Javier',
+  'Lucía', 'Miguel', 'Natalia', 'Óscar', 'Patricia'
+];
+
+// Buscar: 'Lucía' → debería encontrarlo
+// Buscar: 'Antonio' → NO debería encontrarlo
+
+
+
+function buscarNombre (nombre, nombres) {
+    for (let n of nombres) {
+        if (nombre === n) {
+             return `${n} encontrado`
+        }
+    }
+    return 'Nombre no encontrado'
+}
+
+
+function permutarValores (arr, i, j) {
+    for (let k = 0; k < arr.length; k++) {
+        let temp = arr[i][k]
+        arr[i][k] = arr[j][k]
+        arr[j][k] = temp
+    }
+}
+
+
+const B = [
+  [9, 8, 7],
+  [6, 5, 4],
+  [3, 2, 1]
+]
+const permutado = permutarValores(B, 0, 2)
+console.log(permutado)
